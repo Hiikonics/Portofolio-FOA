@@ -138,3 +138,54 @@ if (projectList && projectCount) {
 
   renderProjects();
 }
+
+const deliverables = [
+  ["01", "Key Visual & Poster", "Menyusun identitas visual utama yang menjadi fondasi poster registrasi, pengumuman, dan seluruh materi promosi.", ["Main poster", "Open registration", "Matchday poster", "Winner announcement"]],
+  ["02", "Social Media Assets", "Membuat sistem konten yang konsisten agar informasi turnamen mudah dibaca dan cepat dipublikasikan.", ["Roster reveal", "Schedule update", "Match result", "Story template"]],
+  ["03", "Rundown & Timeline", "Merancang alur dari masa registrasi hingga awarding agar panitia, talent, dan peserta bergerak pada timeline yang sama.", ["Pre-event timeline", "Technical meeting", "Matchday rundown", "Contingency time"]],
+  ["04", "Bracket Management", "Menyiapkan struktur pertandingan, seeding, jadwal, serta pembaruan hasil secara tertib dan transparan.", ["Team seeding", "Bracket setup", "Score update", "Match progress"]],
+  ["05", "Tournament System", "Menyusun format kompetisi, ruleset, alur komunikasi, dan prosedur dispute yang dapat dipahami semua pihak.", ["Competition format", "Rules & penalty", "Map veto", "Dispute flow"]],
+  ["06", "Matchday Operations", "Mengawal pelaksanaan turnamen melalui check-in, koordinasi lobby, pencatatan hasil, dan komunikasi peserta.", ["Team check-in", "Lobby coordination", "Admin support", "Result validation"]],
+];
+
+const phases = [
+  ["01", "Discovery", "Menentukan objektif, target peserta, skala acara, game title, dan kebutuhan publikasi."],
+  ["02", "System Design", "Menyusun format, ruleset, bracket, timeline, pembagian peran, dan jalur komunikasi."],
+  ["03", "Visual Production", "Mengembangkan key visual beserta seluruh aset promosi dan kebutuhan broadcast."],
+  ["04", "Tournament Day", "Menjalankan check-in, match flow, update score, dokumentasi, dan koordinasi peserta."],
+  ["05", "Wrap Up", "Mengumumkan pemenang, merapikan dokumentasi, dan mengevaluasi jalannya turnamen."],
+];
+
+const tournamentPage = document.querySelector(".tournament-page");
+
+if (tournamentPage) {
+  const arrowIcon = '<span class="arrow-icon" aria-hidden="true"></span>';
+  const deliverablesContainer = tournamentPage.querySelector("#deliverables");
+  const phasesContainer = tournamentPage.querySelector("#phases");
+  const teamsContainer = tournamentPage.querySelector("#teams");
+
+  if (deliverablesContainer) {
+    deliverablesContainer.innerHTML = deliverables.map(([number, title, description, items]) => `
+      <article class="deliverable-card">
+        <div class="card-top"><span>${number}</span>${arrowIcon}</div>
+        <div>
+          <h3 class="display-font">${title}</h3>
+          <p>${description}</p>
+          <ul>${items.map((item) => `<li><i></i>${item}</li>`).join("")}</ul>
+        </div>
+      </article>
+    `).join("");
+  }
+
+  if (phasesContainer) {
+    phasesContainer.innerHTML = phases.map(([number, title, description]) => `
+      <div class="phase"><span>${number}</span><h3 class="display-font">${title}</h3><p>${description}</p></div>
+    `).join("");
+  }
+
+  if (teamsContainer) {
+    teamsContainer.innerHTML = ["TEAM 01", "TEAM 02", "TEAM 03", "TEAM 04"].map((team, index) => `
+      <div class="match"><span>${team}</span><b>${index % 2 ? "0" : "1"}</b></div>
+    `).join("");
+  }
+}
