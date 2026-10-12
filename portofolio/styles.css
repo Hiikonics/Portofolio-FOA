@@ -344,7 +344,7 @@ footer {
   display: flex;
   width: max-content;
   will-change: transform;
-  animation: ticker 20s linear infinite;
+  animation: ticker 36s linear infinite;
 }
 .ticker-group {
   display: flex;
