@@ -23,65 +23,53 @@ if (menuButton && mobileNav) {
 const projects = [
   {
     number: "01",
-    title: "Valorant Community Cup",
+    title: "Valorant Merdeka",
     category: "Graphic Design",
-    year: "2025",
+    year: "2026",
     summary: "Identitas visual turnamen yang dirancang agar konsisten dari pengumuman hingga hari pertandingan.",
     tags: ["Key Visual", "Social Media", "Event"],
-    cover: "https://images.unsplash.com/photo-1619616713221-a511d7037e06?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=85&w=1800",
-    href: "https://example.com/projects/valorant-community-cup",
-    featured: true
+    cover: "assets/TicketVal.png",
+    href: "https://www.figma.com/design/zdBHDJ1af5VSC8HNsN9MPn/Untitled?node-id=86-10&t=4GnoGOKbqezujwK9-1"
   },
   {
     number: "02",
-    title: "Matchday Social Series",
-    category: "Graphic Design",
+    title: "Scriptr",
+    category: ["UI/UX", "Graphic Design"],
     year: "2025",
-    summary: "Sistem konten modular untuk roster reveal, jadwal, hasil pertandingan, dan momen komunitas.",
-    tags: ["Campaign", "Template", "Content"],
-    cover: "https://images.unsplash.com/photo-1558707538-c56435bdcdf3?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=85&w=1400",
-    href: "https://example.com/projects/matchday-social-series"
+    summary: "Prototype game visual novel horror interaktif dengan AI generated story",
+    tags: ["Horror", "Prototype", "Visual Novel"],
+    cover: "assets/Scriptr.png",
+    href: "https://www.figma.com/design/piuxCdJfndvbJHUZuVn5fO/Scriptr?node-id=404-76&t=VXcaZ3ED46yQuLp4-1"
   },
   {
     number: "03",
-    title: "Broadcast Visual Kit",
-    category: "Graphic Design",
-    year: "2024",
-    summary: "Paket grafis siaran yang membantu informasi pertandingan terbaca cepat tanpa kehilangan energi.",
-    tags: ["Broadcast", "Overlay", "Motion"],
-    cover: "https://images.unsplash.com/photo-1589829100333-e215933ccd67?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=85&w=1400",
-    href: "https://example.com/projects/broadcast-visual-kit"
+    title: "Edumatch",
+    category: ["UI/UX", "Graphic Design"],
+    year: "2025",
+    summary: "Rekomendasi jurusan dan kampus sesuai minat, bakat, dan gaya belajarmu.",
+    tags: ["Prototype", "Poster", "Education"],
+    cover: "assets/Edumatch.png",
+    href: "https://www.figma.com/design/Ls9qtPW4nr6ePwl4pY1SxE/EduMatch?node-id=0-1&t=LzMyRHP0oiDXEEMX-1"
   },
   {
     number: "04",
-    title: "Tournament Control",
-    category: "UI/UX",
+    title: "Zentory",
+    category: ["UI/UX", "Graphic Design"],
     year: "2025",
-    summary: "Eksplorasi dashboard untuk mengelola tim, bracket, jadwal, dan status pertandingan dalam satu alur.",
+    summary: "Aplikasi Manajemen Stok gudang dengan Pendukung keputusan berbasis AI.",
     tags: ["Dashboard", "UX Flow", "Prototype"],
-    cover: "https://images.unsplash.com/photo-1767449280971-46e438b1ce4a?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=85&w=1800",
-    href: "https://example.com/projects/tournament-control",
-    featured: true
+    cover: "assets/Zentory.png",
+    href: "https://www.figma.com/design/G8g0jNWyILqymgj4qCi9Zz/Design-Awal-Zentory?node-id=0-1&t=jOdErzU1ChDcBCcn-1"
   },
   {
     number: "05",
-    title: "QueueUp Mobile",
-    category: "UI/UX",
-    year: "2025",
-    summary: "Konsep aplikasi komunitas untuk mencari rekan bermain dan membangun party berdasarkan gaya bermain.",
-    tags: ["Mobile App", "Research", "UI Design"],
-    cover: "https://images.unsplash.com/photo-1767449441925-737379bc2c4d?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=85&w=1400",
-    href: "https://example.com/projects/queueup-mobile"
-  },
-  {
-    number: "06",
-    title: "FOA Digital Home",
-    category: "UI/UX",
-    year: "2026",
-    summary: "Sistem website modular yang menyatukan profil tim, layanan, arsip karya, dan jalur kontak.",
-    tags: ["Web Design", "Design System", "Responsive"],
-    cover: "https://images.unsplash.com/photo-1640653410511-bee9946865ab?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=85&w=1400",
-    href: "https://example.com/projects/foa-digital-home"
+    title: "Radan",
+    category: ["Graphic Design"],
+    year: "2023",
+    summary: "Design kemasan untuk produk Makanan Gudeg",
+    tags: ["Packaging", "Food", "Logo"],
+    cover: "assets/Radan.png",
+    href: "https://canva.link/ni19p4x3haq115w"
   }
 ];
 
@@ -93,19 +81,24 @@ function arrow() {
   return '<span aria-hidden="true">↗</span>';
 }
 
-function projectMarkup(project, isFeatured) {
+function categoryLabel(category) {
+  return Array.isArray(category) ? category.join(" / ") : category;
+}
+
+function projectMarkup(project) {
   const tags = project.tags.map((tag) => `<span>${tag}</span>`).join("");
+  const category = categoryLabel(project.category);
   return `
-    <a class="project-entry${isFeatured ? " is-featured" : ""}" href="${project.href}" target="_blank" rel="noreferrer" aria-label="Buka project ${project.title}">
+    <a class="project-entry" href="${project.href}" target="_blank" rel="noreferrer" aria-label="Buka project ${project.title}">
       <div class="project-cover">
         <img src="${project.cover}" alt="Cover ${project.title}" loading="lazy" />
-        <span class="category-label">${project.category}</span>
+        <span class="category-label">${category}</span>
         <span class="view-project">View project ${arrow()}</span>
       </div>
       <div class="project-details">
         <span class="project-number">${project.number}</span>
         <div>
-          <p class="project-meta">${project.category} / ${project.year}</p>
+          <p class="project-meta">${category} / ${project.year}</p>
           <h2 class="display-font project-title">${project.title}</h2>
           <p class="project-summary">${project.summary}</p>
           <div class="project-tags">${tags}</div>
@@ -116,14 +109,21 @@ function projectMarkup(project, isFeatured) {
   `;
 }
 
-function renderProjects(category) {
-  const visibleProjects = category === "All"
+let activeCategory = "All";
+
+function renderProjects() {
+  const visibleProjects = activeCategory === "All"
     ? projects
-    : projects.filter((project) => project.category === category);
+    : projects.filter((project) => {
+      const categories = Array.isArray(project.category)
+        ? project.category
+        : [project.category];
+      return categories.includes(activeCategory);
+    });
 
   projectCount.textContent = `${String(visibleProjects.length).padStart(2, "0")} PROJECTS`;
   projectList.innerHTML = visibleProjects
-    .map((project, index) => projectMarkup(project, category === "All" && index === 0 && project.featured))
+    .map((project) => projectMarkup(project))
     .join("");
 }
 
@@ -131,9 +131,10 @@ if (projectList && projectCount) {
   filterButtons.forEach((button) => {
     button.addEventListener("click", () => {
       filterButtons.forEach((item) => item.classList.toggle("is-active", item === button));
-      renderProjects(button.dataset.filter);
+      activeCategory = button.dataset.filter;
+      renderProjects();
     });
   });
 
-  renderProjects("All");
+  renderProjects();
 }
